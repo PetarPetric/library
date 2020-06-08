@@ -1,0 +1,55 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-weight: normal;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+  padding: 15px;
+  background-image: url("images/libraryimg.png");
+}
+
+#addNewBtn {
+  text-align: center;
+}
+
+.openFormBtn {
+  background: #e0e0eb;
+  padding: 0.5em 1.5em;
+  border: 0;
+  border-radius: 5px;
+}
+
+.openFormBtn:hover {
+  background-color: #C0C0C0;
+}
+
+.scBtn {
+  background: #e0e0eb;
+  padding: 0.5em 1.5em;
+  border: 0;
+  border-radius: 5px;
+}
+
+.scBtn:hover {
+  background-color: #C0C0C0;
+}
+
+#bookForm {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  overflow: auto;
+  transform: translate(-50%, -50%);
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: rgba(0,0,0,0.3);
+  width: auto;
+  max-width: 80%;
+  padding: 10px;
+  text-align: center;
+}
