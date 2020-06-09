@@ -5,9 +5,9 @@ const cancelBtn = document.getElementById('closeBtn');
 const bookNameField = document.getElementById('bookName');
 const authorNameField = document.getElementById('authorName')
 const pageNum = document.getElementById('pageNumber');
+const yesNo = document.getElementsByName('readBook');
 
 let myLibrary = [];
-const newBook = new Book('Smth', 'asadsada', 333, false);
 
 openBookBtn.addEventListener('click', function(){
   openBookForm.style.display = 'block'; 
@@ -15,6 +15,21 @@ openBookBtn.addEventListener('click', function(){
   authorNameField.value = '';
   pageNum.value = '';
 }); 
+
+submitBtn.addEventListener('click', function(){
+  const newBook = new Book(
+    bookNameField.value, 
+    authorNameField.value, 
+    pageNum.value,
+    document.querySelector('#yesReadBook').checked  
+  ) 
+  openBookForm.style.display = 'none'; 
+  bookNameField.value = '';
+  authorNameField.value = '';
+  pageNum.value = '';
+  myLibrary.push(newBook);
+});
+
 
 cancelBtn.addEventListener('click', function(){
   openBookForm.style.display = 'none';
@@ -32,8 +47,3 @@ function Book(title, author, pages, read) {
   }
 }
 
-function addBookToLibrary() {
-  myLibrary.push(newBook); // adds book to myLibrary array
-}
-
-addBookToLibrary();
