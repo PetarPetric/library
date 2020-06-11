@@ -11,6 +11,7 @@ let myLibrary = [];
 
 openBookBtn.addEventListener('click', function(){
   openBookForm.style.display = 'block'; 
+  openBookBtn.style.display = 'none';
   bookNameField.value = '';
   authorNameField.value = '';
   pageNum.value = '';
@@ -27,12 +28,15 @@ submitBtn.addEventListener('click', function(){
   bookNameField.value = '';
   authorNameField.value = '';
   pageNum.value = '';
+  openBookBtn.style.display = 'inline-block';
   myLibrary.push(newBook);
+  render();
 });
 
 
 cancelBtn.addEventListener('click', function(){
   openBookForm.style.display = 'none';
+  openBookBtn.style.display = 'inline-block';
 })
 
 
@@ -46,4 +50,32 @@ function Book(title, author, pages, read) {
     this.read = "Not read";
   }
 }
+
+function render() {
+  const bookContainer = document.getElementById('bookList'); 
+  bookContainer.innerHTML = '';
+  for(let i = 0; i<  myLibrary.length; i++){ 
+    const blocky = document.createElement('div');
+    const title = document.createElement('h3');
+    const author = document.createElement('h4');
+    const pages = document.createElement('h5');
+    const read = document.createElement('h6');
+
+    blocky.classList.add('booksy');
+    blocky.append(title);
+    title.textContent = "Title:";
+    blocky.append(myLibrary[i].title);
+    blocky.append(author);
+    author.textContent = "Author:"
+    blocky.append(myLibrary[i].author);
+    blocky.appendChild(pages);
+    pages.textContent = "Number of pages:";
+    blocky.append(myLibrary[i].pages);
+    blocky.appendChild(read);
+    read.textContent = "Have you read it?";
+    blocky.append(myLibrary[i].read);
+    bookContainer.append(blocky);
+    
+  }
+} 
 
