@@ -60,6 +60,8 @@ function render() {
     const author = document.createElement('h4');
     const pages = document.createElement('h5');
     const read = document.createElement('h6');
+    const delBtn = document.createElement('button')
+    const br = document.createElement('br')
 
     blocky.classList.add('booksy');
     blocky.append(title);
@@ -74,8 +76,12 @@ function render() {
     blocky.appendChild(read);
     read.textContent = "Have you read it?";
     blocky.append(myLibrary[i].read);
+    blocky.appendChild(br);
+    blocky.append(delBtn);
+    delBtn.classList.add('delBtns')
+    delBtn.textContent = "x";
     bookContainer.append(blocky);
-    
+    blocky.dataset.book_index = i;
   }
-} 
+};
 
