@@ -49,19 +49,47 @@ function Book(title, author, pages, read) {
   } else {
     this.read = "Not read";
   }
+  
+  this.bookUpdateRead = function() {
+    if(this.read === "Read") {
+      this.read = "Not read"
+    } else if(this.read === "Not read") {
+      this.read = "Read";
+    } 
+  }
 }
+
+
 
 function render() {
   const bookContainer = document.getElementById('bookList'); 
   bookContainer.innerHTML = '';
-  for(let i = 0; i<  myLibrary.length; i++){ 
+  for(let i = 0; i <  myLibrary.length; i++){ 
     const blocky = document.createElement('div');
     const title = document.createElement('h3');
     const author = document.createElement('h4');
     const pages = document.createElement('h5');
     const read = document.createElement('h6');
-    const delBtn = document.createElement('button')
-    const br = document.createElement('br')
+    const redOrNot = document.createElement('p')
+    const delBtn = document.createElement('button');
+    const toggleBtn = document.createElement('button');
+    const br = document.createElement('br');
+
+    // deleting function
+    delBtn.addEventListener('click', (e) => {
+    const indxNum = blocky.book_index = i;
+    myLibrary.splice(indxNum, 1);
+    e.target.parentElement.parentElement.removeChild(e.target.parentElement);
+    });
+
+    // togling read
+    toggleBtn.addEventListener('click', () => {
+    const indxNum = blocky.book_index = i;
+    let updatedLibrary = myLibrary[indxNum];
+    updatedLibrary.bookUpdateRead();
+    redOrNot.textContent = updatedLibrary.read
+    
+    }); 
 
     blocky.classList.add('booksy');
     blocky.append(title);
@@ -75,13 +103,16 @@ function render() {
     blocky.append(myLibrary[i].pages);
     blocky.appendChild(read);
     read.textContent = "Have you read it?";
-    blocky.append(myLibrary[i].read);
+    redOrNot.append(myLibrary[i].read);
+    blocky.append(redOrNot);
     blocky.appendChild(br);
     blocky.append(delBtn);
     delBtn.classList.add('delBtns')
     delBtn.textContent = "x";
     bookContainer.append(blocky);
     blocky.dataset.book_index = i;
+    blocky.append(toggleBtn);
+    toggleBtn.textContent = "c"
   }
 };
 
