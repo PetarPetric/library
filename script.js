@@ -40,22 +40,23 @@ cancelBtn.addEventListener('click', function(){
 })
 
 
-function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  if(read == true) {
-    this.read = "Read";
-  } else {
-    this.read = "Not read";
-  }
-  
+class Book {
+  constructor(_title, _author, _pages, _read) {
+  this.title = _title;
+  this.author = _author;
+  this.pages = _pages;
+  if(_read == true) {
+        this.read = "Read";
+      } else {
+        this.read = "Not read";
+    }
   this.bookUpdateRead = function() {
     if(this.read === "Read") {
       this.read = "Not read"
     } else if(this.read === "Not read") {
       this.read = "Read";
     } 
+    }
   }
 }
 
